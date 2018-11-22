@@ -11,6 +11,7 @@ import Guide from './guide';
 import Tooltip from './tooltip';
 import util from './util';
 import F2 from './f2';
+import PieLabel from './pielabel';
 
 export {
   Chart,
@@ -26,4 +27,5 @@ export {
   Tooltip,
   util,
   F2,
+  PieLabel,
 };

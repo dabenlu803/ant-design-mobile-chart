@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Animation from '@antv/f2/lib/animation/detail';
-import F2 from '@antv/f2/lib/core';
+// import F2 from '@antv/f2/lib/core';
+import F2 from '@antv/f2/lib/index-all';
 import '@antv/f2/lib/geom/adjust';
 import '@antv/f2/lib/scale/time-cat';
 import util from '../../common/util';
@@ -19,9 +20,8 @@ F2.Chart.plugins.register(Animation);
 class Chart extends Component {
   componentDidMount() {
     const {
-      pixelRatio, padding, width, height,
-      appendPadding,
-    } = this.props;
+ pixelRatio, padding, width, height, appendPadding 
+} = this.props;
 
     const chart = new F2.Chart({
       el: this.refs.canvas,
@@ -39,8 +39,8 @@ class Chart extends Component {
   // 子组件更新完成
   componentDidUpdate() {
     const {
-      onPreRender, onRendered, source, scales, animate,
-    } = this.props;
+ onPreRender, onRendered, source, scales, animate 
+} = this.props;
     const { isFunction } = util;
     // 防御没有值的情况
     if (!source) {
@@ -75,18 +75,19 @@ class Chart extends Component {
     }
     return React.Children.map(this.props.children, (child) => {
       // 添加空判断，child有可能是null
-      return child && React.cloneElement(child, {
-        chart, // 子组件传入chartprops
-      });
+      return (
+        child &&
+        React.cloneElement(child, {
+          chart, // 子组件传入chartprops
+        })
+      );
     });
   }
   render() {
     return (
       <div>
         <canvas ref="canvas" style={{ display: 'block' }} />
-        {
-          this.chart && this.renderChildren()
-        }
+        {this.chart && this.renderChildren()}
       </div>
     );
   }
